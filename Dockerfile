@@ -1,14 +1,16 @@
-# Use official PHP Apache image
 FROM php:8.1-apache
 
-# Copy the specific file as index to the web root
-COPY app/Views /var/www
+# Copy all files and folders from your project root (where the Dockerfile is) to /var/www/html inside container
+COPY . /var/www/html/
 
-# Enable mod_rewrite (optional, useful for .htaccess)
+# If your main PHP file is NOT named index.php, but something else (like home.php), tell Apache to use that:
+RUN echo "DirectoryIndex home.php" > /etc/apache2/conf-available/directoryindex.conf && a2enconf directoryindex
+
+# Enable mod_rewrite if you need .htaccess support
 RUN a2enmod rewrite
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www
+# Set proper permissions for Apache user
+RUN chown -R www-data:www-data /var/www/html
 
 # Expose port 80
 EXPOSE 80
