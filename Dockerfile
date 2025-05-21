@@ -8,7 +8,7 @@ COPY app/Views /var/www
 RUN a2enmod rewrite
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www
 
 # Expose port 80
 EXPOSE 80
