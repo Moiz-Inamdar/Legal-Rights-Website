@@ -4,7 +4,7 @@ FROM php:8.1-apache
 COPY . /var/www/html/
 
 # If your main PHP file is NOT named index.php, but something else (like home.php), tell Apache to use that:
-RUN echo "DirectoryIndex home.php" > /etc/apache2/conf-available/directoryindex.conf && a2enconf directoryindex
+RUN echo "DirectoryIndex app/Views/home.php" > /etc/apache2/conf-available/directoryindex.conf && a2enconf directoryindex
 
 # Enable mod_rewrite if you need .htaccess support
 RUN a2enmod rewrite
