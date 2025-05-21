@@ -1,16 +1,18 @@
-# Use official PHP Apache image
 FROM php:8.1-apache
 
-# Copy everything
+# Copy project files
 COPY . /var/www/html/
 
-# Enable mod_rewrite for clean URLs
+# Enable mod_rewrite
 RUN a2enmod rewrite
 
-# Update Apache config to allow .htaccess in /var/www/
+# Allow .htaccess to override configs
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-# Set permissions
+# Set custom default page
+RUN mv app/Views/home.php /var/www/html/index.php
+
+# Permissions
 RUN chown -R www-data:www-data /var/www/html
 
 # Expose port 80
