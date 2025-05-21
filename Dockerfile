@@ -1,16 +1,16 @@
 # Use official PHP Apache image
 FROM php:8.1-apache
 
-# Copy entire project to Apache web root
+# Copy everything
 COPY . /var/www/html/
 
-# Enable mod_rewrite (required for .htaccess to work)
+# Enable mod_rewrite for clean URLs
 RUN a2enmod rewrite
 
-# Allow Apache to read .htaccess files
-RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+# Update Apache config to allow .htaccess in /var/www/
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-# Set permissions (optional, but good for avoiding access issues)
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
 # Expose port 80
