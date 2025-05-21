@@ -1,0 +1,122 @@
+:root {
+    --primary-color: #8A8D00;
+    --secondary-color: #900020;
+}
+
+.color-primary {
+    color: var(--primary-color);
+}
+
+.color-secondary {
+    color: var(--secondary-color);
+}
+
+.primary-bg {
+    background-color: var(--primary-color);
+}
+
+.secondary-bg {
+    background-color: var(--secondary-color);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    appearance: textField;
+    -moz-appearance: textfield;
+}
+
+#loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.75) no-repeat center center;
+    justify-content: center;
+    align-items: center;
+}
+
+.autocomplete {
+    position: relative;
+    /* width: 300px; */
+    margin: 0 auto;
+    /* text-align: center; */
+}
+
+.autocomplete-dropdown {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+    z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.autocomplete-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: pre-wrap;
+    content: "\25BC";
+}
+
+.autocomplete-dropdown div:hover {
+    background-color: #f0f0f0;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+}
+
+input[type="date"] {
+    position: relative;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+    /* content: "\25BC";  */
+    color: #555;
+    padding: 0 5px;
+}
+
+/* change color of symbol on hover */
+input[type="date"]:hover:after {
+    color: #bf1400;
+}
+
+/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+/* adjust clear button */
+input[type="date"]::-webkit-clear-button {
+    z-index: 1;
+}
