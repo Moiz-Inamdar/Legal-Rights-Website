@@ -2,7 +2,7 @@
 FROM php:8.1-apache
 
 # Copy the specific file as index to the web root
-COPY app /var/www/html/index.php
+COPY app/Views /var/www/html
 
 # Enable mod_rewrite (optional, useful for .htaccess)
 RUN a2enmod rewrite
