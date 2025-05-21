@@ -2,7 +2,7 @@
 FROM php:8.1-apache
 
 # Copy all project files to the Apache web directory
-COPY . /var/www/html/
+COPY app\\Views\\home.php
 
 # Enable Apache mod_rewrite (if you use .htaccess)
 RUN a2enmod rewrite
